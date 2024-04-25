@@ -1,0 +1,11 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+        "taskLabel": "任务-bnn2meshtal",
+        "appliesTo": "bnn2meshtal.py",
+        "type": "launch",
+        "args": [ "-f fng_n2_37.bnn.lis" ]
+    }
+  ]
+}
