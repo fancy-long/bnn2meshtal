@@ -37,25 +37,25 @@ def main():
             if counts >= 7:
                 break
             if 'X coordinate:' in line:
-                itokens = line.split( ) # x��߽硢���ȡ��������������С
+                itokens = line.split( ) # bins and bin's size in x-axis direction
                 x_min = float(itokens[3])
                 x_max = float(itokens[5])
                 x_bins = int(itokens[7])
                 x_bin = float(itokens[10])
-            elif 'Y coordinate:' in line: # y��߽硢���ȡ��������������С
+            elif 'Y coordinate:' in line: # bins and bin's size in y-axis direction
                 jtokens = line.split( )
                 y_min = float(jtokens[3])
                 y_max = float(jtokens[5])
                 y_bins = int(jtokens[7])
                 y_bin = float(jtokens[10])
-            elif 'Z coordinate:' in line: # z��߽硢���ȡ��������������С
+            elif 'Z coordinate:' in line: # bins and bin's size in z-axis direction
                 ktokens = line.split( )
                 z_min = float(ktokens[3])
                 z_max = float(ktokens[5])
                 z_bins = int(ktokens[7])
                 z_bin = float(ktokens[10])
 
-    with open(filename, 'r') as file:  # ��ͨ����������result, error�����б���
+    with open(filename, 'r') as file:  # read result and error form .bnn
         line = file.readline()
         counts = 1
         while True:
@@ -76,7 +76,7 @@ def main():
     result = [num for elem in result for num in elem]
     error = [num for elem in error for num in elem]
 
-    i, j, k = 1, 1, 1  #�õ�������߽�����������
+    i, j, k = 1, 1, 1  #Mesh boundary and center in the x(y, z)-axis direction
     x_bound = ['%.2f' %x_min]
     y_bound = ['%.2f' %y_min]
     z_bound = ['%.2f' %z_min]
@@ -109,11 +109,11 @@ def main():
         '\n    Z direction:\t', z_bound,
         '\n    Energy bin boundaries: 0.00E+00 1.00E+36',
         '\n', '      X       Y      Z     Result     Rel Error\n']
-    file_creat("meshtal", title) #д��̧ͷ������߽�
+    file_creat("meshtal", title) #write title and bound to meshtal
     file_creat("meshtal", bound)
     
     n = 0  
-    with open('meshtal' ,'a') as of:  #д��������result��error
+    with open('meshtal' ,'a') as of:  #write result and error to meshtal
         k = 0
         while k < z_bins:
             j = 0
