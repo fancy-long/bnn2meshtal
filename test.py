@@ -64,20 +64,6 @@ print(x_bound, y_bound, z_bound)
 print('\n', type(x_bound[2]))
 print(x_bound[3])
 
-def generate_lines():
-
-    yield 'line 1\n'
-
-    yield 'line 2\n'
-
-    yield 'line 3\n'
-
-    yield "mcnp   version 6     ld=**/**/**  probid =  **/**/** 11:07:07\n C simple fluka input\n Number of histories used for normalizing tallies =        100000.00\n\n Mesh Tally Number         4\n neutron  mesh tally.\n\n Tally bin boundaries:\n"
-    
-
-  
-
-with open('example.txt', 'w') as on:
-
-    on.writelines(generate_lines())
+a = 3*3*3/10
+print ('\n', type(a))
 
