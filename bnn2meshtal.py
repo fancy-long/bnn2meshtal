@@ -1,5 +1,6 @@
 import os, sys
 import argparse
+import math
 
 # creat a file in the parent folder
 def file_creat(name, msg):
@@ -63,12 +64,12 @@ def main():
             counts += 1
             if counts <= 9:
                 pass
-            elif counts <= (z_bins*y_bins*x_bins/10+9):
+            elif counts <= (math.ceil(z_bins*y_bins*x_bins/10)+9):
                 tokens = line.strip().split()
                 result.append(tokens)
-            elif counts <= (z_bins*y_bins*x_bins/10+12):
+            elif counts <= (math.ceil(z_bins*y_bins*x_bins/10)+12):
                 pass
-            elif counts <= (2*z_bins*y_bins*x_bins/10+12):
+            elif counts <= (math.ceil(z_bins*y_bins*x_bins/10)*2+12):
                 tokens = line.strip().split()
                 error.append(tokens)
             else:
@@ -108,7 +109,7 @@ def main():
         '\n    Y direction:\t', y_bound, 
         '\n    Z direction:\t', z_bound,
         '\n    Energy bin boundaries: 0.00E+00 1.00E+36',
-        '\n', '      X       Y      Z     Result     Rel Error\n']
+        '\n', '\n', '\tX\tY\tZ\tResult\tRel Error\t\n']
     file_creat("meshtal", title) #write title and bound to meshtal
     file_creat("meshtal", bound)
     
@@ -120,7 +121,7 @@ def main():
             while j < y_bins:
                 i =0
                 while i < x_bins:
-                    line = ['\t', x_pos[i], '\t', y_pos[j], '\t', z_pos[k], '   ', result[n], ' ', error[n], '\n']
+                    line = ['\t', x_pos[i], '\t', y_pos[j], '\t', z_pos[k], '\t', result[n], '\t', error[n], '\t', '\n']
                     of.writelines(line)
                     i += 1
                     n += 1
